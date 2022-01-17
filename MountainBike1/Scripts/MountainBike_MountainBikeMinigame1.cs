@@ -67,15 +67,17 @@ public class MountainBike_MountainBikeMinigame1 : MonoBehaviour
     {
         if (GameController_MountainBikeMinigame1.instance.stage == 9 || GameController_MountainBikeMinigame1.instance.stage == 10)
         {
-            transform.DORotateQuaternion(Quaternion.Euler(0, 0, 350), 0.5f).SetEase(Ease.InBack).OnComplete(() => { transform.DORotateQuaternion(Quaternion.Euler(0, 0, transform.eulerAngles.z + 700), 0.8f).SetEase(Ease.OutBack); });
+            transform.DORotate(new Vector3(0, 0, transform.eulerAngles.z + 719), 1.2f, RotateMode.FastBeyond360).SetEase(Ease.InOutCirc);
+
             OnFlip1();
             transform.DOMoveX(transform.position.x + 4, 0.6f).SetEase(Ease.Linear).OnComplete(OnFlip2);
         }
         else
         {
-            transform.DORotateQuaternion(Quaternion.Euler(0, 0, 350), 1f);
+            //transform.DORotateQuaternion(Quaternion.Euler(0, 0, 350), 1f);
+            transform.DORotate(new Vector3(0, 0, transform.eulerAngles.z +  360), 0.6f, RotateMode.FastBeyond360).SetEase(Ease.InOutCirc);
             OnFlip1();
-            transform.DOMoveX(transform.position.x + 3, 0.6f).SetEase(Ease.Linear).OnComplete(OnFlip2);
+            transform.DOMoveX(transform.position.x + 2, 0.6f).SetEase(Ease.Linear).OnComplete(OnFlip2);
         }
     }
 
@@ -129,11 +131,11 @@ public class MountainBike_MountainBikeMinigame1 : MonoBehaviour
         if (isBegin)
         {
             isCanJump = true;
-
             if (collision.gameObject.CompareTag("Path"))
             {
-                speed = 9f;
+                speed = 7f;
                 fallPower = 0;
+
             }
         }
     }
